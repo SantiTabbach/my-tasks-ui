@@ -1,8 +1,8 @@
 export type Role = "User" | "Admin";
 
 export interface User {
+  id: string;
   username: string;
-  password: string;
   avatar?: string;
   roles: Set<Role>;
   active: boolean;
