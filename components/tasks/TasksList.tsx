@@ -20,6 +20,7 @@ const TasksList = () => {
     <React.Fragment>
       <ListHeader tasks={tasks} />
       <FlatList
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.list}
         data={tasks}
         renderItem={({ item }) => <TaskItem {...item} />}
@@ -34,6 +35,6 @@ export default TasksList;
 const styles = StyleSheet.create({
   list: {
     gap: 10,
-    marginTop: 10,
+    paddingVertical: 16,
   },
 });

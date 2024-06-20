@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: "Urbanist_400Regular",
+    fontFamily: "Urbanist_500Medium",
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontFamily: "Urbanist_600SemiBold",
+    fontFamily: "Urbanist_700Bold",
   },
   title: {
     fontSize: 32,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 20,
-    fontFamily: "Urbanist_500Medium",
+    fontFamily: "Urbanist_600SemiBold",
   },
   link: {
     lineHeight: 30,
