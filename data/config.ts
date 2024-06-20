@@ -6,9 +6,9 @@ import axios, {
 } from "axios";
 
 //TODO: Pull from bk
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN ?? "";
+const ACCESS_TOKEN = process.env.EXPO_PUBLIC_ACCESS_TOKEN ?? "";
 
-export const BASE_URL = process.env.BASE_URL;
+export const BASE_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
