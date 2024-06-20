@@ -22,7 +22,10 @@ const withApiFeedback = <P, T>(
   resourceName = "data",
   hocConfig?: IHocConfig
 ) => {
-  return (props: P): ReactElement => {
+  return (
+    props: Omit<P, typeof resourceName> &
+      Partial<Record<typeof resourceName, T>>
+  ): ReactElement => {
     const { data, isError, isLoading, isSuccess } = usePerformFetch(fetchProps);
 
     if (isLoading) {
@@ -49,9 +52,11 @@ const withApiFeedback = <P, T>(
       );
     }
 
-    const resourceProps = { [resourceName]: data };
+    const resourceProps = { [resourceName]: data } as Partial<
+      Record<typeof resourceName, T>
+    >;
 
-    return <WrappedComponent {...props} {...resourceProps} />;
+    return <WrappedComponent {...(props as P)} {...resourceProps} />;
   };
 };
 
