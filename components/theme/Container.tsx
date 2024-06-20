@@ -22,8 +22,14 @@ const ThemedContainer = ({
 
   return (
     <SafeAreaView
+      edges={["top"]}
       style={[
-        { backgroundColor, paddingHorizontal: 20, paddingTop: 30, flex: 1 },
+        {
+          backgroundColor,
+          paddingHorizontal: 20,
+          paddingTop: 30,
+          flex: 1,
+        },
         style,
       ]}
       {...otherProps}
