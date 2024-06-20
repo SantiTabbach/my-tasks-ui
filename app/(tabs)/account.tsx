@@ -1,15 +1,29 @@
 import { StyleSheet } from "react-native";
 import { ThemedText, ThemedContainer } from "@/components/theme";
+import { getUserById } from "@/data/users";
+import { User } from "@/models/models";
+import withApiFeedback from "@/components/hoc/withApiFeedback";
 
-const AccountScreen = () => {
+interface IAccount {
+  userInfo?: User;
+}
+
+const AccountScreen = ({ userInfo }: IAccount) => {
   return (
     <ThemedContainer>
-      <ThemedText>My Account</ThemedText>
+      <ThemedText>{JSON.stringify(userInfo)}</ThemedText>
     </ThemedContainer>
   );
 };
 
-export default AccountScreen;
+export default withApiFeedback(
+  AccountScreen,
+  {
+    fetchFn: getUserById,
+    args: ["666e389c0970e2f36dc91f7a"],
+  },
+  "userInfo"
+);
 
 const styles = StyleSheet.create({
   headerImage: {

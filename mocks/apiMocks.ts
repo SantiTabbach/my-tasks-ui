@@ -7,10 +7,6 @@ const mockedUser = {
   active: true,
 };
 
-export const getUser = async (): Promise<User> => {
-  return mockedUser;
-};
-
 const mockedTasks = [
   {
     id: "1",
