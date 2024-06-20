@@ -13,7 +13,7 @@ export default function HomeScreen() {
 
   return (
     user && (
-      <ThemedContainer style={styles.container}>
+      <ThemedContainer>
         <ThemedView style={styles.titleContainer}>
           <HelloWave />
           <ThemedText type="title">What's up, {user.username}!</ThemedText>
@@ -25,9 +25,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   titleContainer: {
     gap: 8,
     flexDirection: "row",
