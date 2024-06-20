@@ -26,9 +26,10 @@ const ThemedContainer = ({
       style={[
         {
           backgroundColor,
+          flex: 1,
+          alignItems: "center",
           paddingHorizontal: 20,
           paddingTop: 30,
-          flex: 1,
         },
         style,
       ]}
