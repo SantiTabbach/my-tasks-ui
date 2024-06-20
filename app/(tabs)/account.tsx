@@ -20,7 +20,7 @@ export default withApiFeedback(
   AccountScreen,
   {
     fetchFn: getUserById,
-    args: ["666e389c0970e2f36dc91f7a"],
+    args: ["666e389c0970e2f36dc91f7a"], //TODO: Pull from token
   },
   "userInfo"
 );
