@@ -6,8 +6,7 @@ import axios, {
 } from "axios";
 
 //TODO: Pull from bk
-const ACCESS_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VybmFtZSI6IlNhbnRpIiwicm9sZXMiOlsiVXNlciJdfSwiaWF0IjoxNzE4OTA5NDk4LCJleHAiOjE3MTg5OTU4OTh9.3Ekb-CPLMQjKbg41zVzpIcGua1P0uYw-OARKVrmKGvg";
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN ?? "";
 
 export const BASE_URL = process.env.BASE_URL;
 
@@ -15,7 +14,7 @@ const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${ACCESS_TOKEN}`,
+    Authorization: "Bearer ".concat(ACCESS_TOKEN),
   },
 });
 
@@ -31,12 +30,6 @@ export const sendGetRequest = async (
     const response: AxiosResponse = await axiosInstance.get(endpoint, config);
     return { success: true, data: response.data };
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("Axios error:", error.response?.data);
-      return { success: false, error };
-    } else {
-      console.error("Unexpected error:", error);
-      throw new Error("Unexpected error occurred");
-    }
+    throw new Error(`While sending get request: ${error}`);
   }
 };

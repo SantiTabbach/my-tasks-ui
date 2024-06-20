@@ -23,6 +23,8 @@ export const getUserById = async (
 
     return user;
   } catch (error) {
-    console.log(error);
+    const errorMessage = `While trying to fetch user info: ${error}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
   }
 };

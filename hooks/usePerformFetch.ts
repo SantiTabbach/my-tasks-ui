@@ -21,7 +21,7 @@ const initalState = {
   error: null,
 };
 
-const usePerformFetch = <T>({ fetchFn, args }: IFetchProps<T>) => {
+const usePerformFetch = <T>({ fetchFn, args = [] }: IFetchProps<T>) => {
   const [fetchState, setFetchState] = useState<IFetchState<T>>(initalState);
 
   useEffect(() => {
@@ -29,7 +29,8 @@ const usePerformFetch = <T>({ fetchFn, args }: IFetchProps<T>) => {
       setFetchState((prevState) => ({ ...prevState, isLoading: true }));
 
       try {
-        const data = await fetchFn(args);
+        const data = await fetchFn(...args);
+
         setFetchState({
           isLoading: false,
           isError: false,
