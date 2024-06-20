@@ -1,23 +1,27 @@
-import { StyleSheet } from "react-native";
-import { ThemedText, ThemedContainer } from "@/components/theme";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { ThemedText, ThemedContainer, ThemedView } from "@/components/theme";
 import { getUserById } from "@/data/users";
 import { User } from "@/models/models";
 import withApiFeedback from "@/components/hoc/withApiFeedback";
 
-interface IAccount {
-  userInfo?: User;
+interface IUserInfo {
+  userInfo: User;
 }
 
-const AccountScreen = ({ userInfo }: IAccount) => {
-  return (
-    <ThemedContainer>
-      <ThemedText>{JSON.stringify(userInfo)}</ThemedText>
-    </ThemedContainer>
-  );
-};
+const UserInfo = ({ userInfo }: IUserInfo) => (
+  <ThemedView style={styles.userInfoContainer}>
+    {userInfo?.avatar && <Image src={userInfo.avatar} style={styles.avatar} />}
+    <ThemedText type="title" style={{ textAlign: "center" }}>
+      {userInfo.username}
+    </ThemedText>
+    <TouchableOpacity style={styles.logoutBtn}>
+      <ThemedText type="subtitle">Logout</ThemedText>
+    </TouchableOpacity>
+  </ThemedView>
+);
 
-export default withApiFeedback(
-  AccountScreen,
+const WrappedUserInfo = withApiFeedback<IUserInfo, User | undefined>(
+  UserInfo,
   {
     fetchFn: getUserById,
     args: ["666e389c0970e2f36dc91f7a"], //TODO: Pull from token
@@ -25,15 +29,36 @@ export default withApiFeedback(
   "userInfo"
 );
 
+const AccountScreen = () => {
+  return (
+    <ThemedContainer style={styles.container}>
+      <WrappedUserInfo />
+    </ThemedContainer>
+  );
+};
+
+export default AccountScreen;
+
 const styles = StyleSheet.create({
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
+  container: {
+    alignItems: "center",
   },
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
+  userInfoContainer: {
+    gap: 20,
+    textAlign: "center",
+  },
+  avatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+  },
+  logoutBtn: {
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#c2c2c2",
   },
 });
