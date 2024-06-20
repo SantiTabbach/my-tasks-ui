@@ -14,7 +14,7 @@ export interface IFetchProps<T> {
 }
 
 const initalState = {
-  isLoading: false,
+  isLoading: true,
   isError: false,
   isSuccess: false,
   data: null,
@@ -26,8 +26,6 @@ const usePerformFetch = <T>({ fetchFn, args = [] }: IFetchProps<T>) => {
 
   useEffect(() => {
     const performFetch = async () => {
-      setFetchState((prevState) => ({ ...prevState, isLoading: true }));
-
       try {
         const data = await fetchFn(...args);
 
