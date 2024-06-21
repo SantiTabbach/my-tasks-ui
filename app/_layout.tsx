@@ -19,8 +19,17 @@ import * as SplashScreen from "expo-splash-screen";
 import "react-native-reanimated";
 import { useColorScheme } from "@/hooks";
 import { SessionProvider } from "@/context/auth/ctx";
+import { TamaguiProvider, createTamagui } from "@tamagui/core";
+import { config } from "@tamagui/config/v3";
 
 SplashScreen.preventAutoHideAsync();
+
+const tamaguiConfig = createTamagui(config);
+
+type Conf = typeof tamaguiConfig;
+declare module "@tamagui/core" {
+  interface TamaguiCustomConfig extends Conf {}
+}
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -44,17 +53,19 @@ export default function RootLayout() {
   }
 
   return (
-    <SessionProvider>
-      <SafeAreaProvider>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack>
-            <Stack.Screen name="(guest)" options={{ headerShown: false }} />
-            <Stack.Screen name="(app)" options={{ headerShown: false }} />
-          </Stack>
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </SessionProvider>
+    <TamaguiProvider config={tamaguiConfig}>
+      <SessionProvider>
+        <SafeAreaProvider>
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          >
+            <Stack>
+              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+              <Stack.Screen name="(guest)" options={{ headerShown: false }} />
+            </Stack>
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </SessionProvider>
+    </TamaguiProvider>
   );
 }
