@@ -1,9 +1,6 @@
-import { Link, Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { Stack } from "expo-router";
 
-import { ThemedText, ThemedView } from "@/components/theme";
-
-const LogInScreen = () => {
+const GuestScreen = () => {
   return (
     <Stack>
       <Stack.Screen name="sign-in" options={{ headerShown: false }} />
@@ -12,13 +9,4 @@ const LogInScreen = () => {
   );
 };
 
-export default LogInScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-});
+export default GuestScreen;

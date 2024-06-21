@@ -14,7 +14,7 @@ const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: "Bearer ".concat(ACCESS_TOKEN),
+    Authorization: "Bearer ".concat(ACCESS_TOKEN), //TODO: Remove from here
   },
 });
 
@@ -28,6 +28,23 @@ export const sendGetRequest = async (
 ): Promise<ApiResponse<any>> => {
   try {
     const response: AxiosResponse = await axiosInstance.get(endpoint, config);
+    return { success: true, data: response.data };
+  } catch (error) {
+    throw new Error(`While sending get request: ${error}`);
+  }
+};
+
+export const sendPostRequest = async (
+  endpoint: string,
+  body: object,
+  config?: AxiosRequestConfig
+): Promise<ApiResponse<any>> => {
+  try {
+    const response: AxiosResponse = await axiosInstance.post(
+      endpoint,
+      body,
+      config
+    );
     return { success: true, data: response.data };
   } catch (error) {
     throw new Error(`While sending get request: ${error}`);

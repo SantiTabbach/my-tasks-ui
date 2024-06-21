@@ -1,4 +1,4 @@
-import { Role } from "@/models/models";
+import { Role, User } from "@/models/models";
 
 export interface UserDTO {
   _id: string;
@@ -7,4 +7,8 @@ export interface UserDTO {
   roles: Set<Role>;
   active: boolean;
   __v: number;
+}
+
+export interface ICreateUserBody extends Omit<User, "id" | "active"> {
+  password: string;
 }
