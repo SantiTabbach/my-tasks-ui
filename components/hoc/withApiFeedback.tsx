@@ -1,8 +1,7 @@
 import usePerformFetch, { IFetchProps } from "@/hooks/usePerformFetch";
-import React, { ReactElement } from "react";
 import { ThemedText } from "../theme";
 
-type TComponent<P> = (props: P) => ReactElement;
+type TComponent<P> = (props: P) => React.ReactElement;
 
 interface IHocConfig {
   errorMessage?: string;
@@ -25,7 +24,7 @@ const withApiFeedback = <P, T>(
   return (
     props: Omit<P, typeof resourceName> &
       Partial<Record<typeof resourceName, T>>
-  ): ReactElement => {
+  ): React.ReactElement => {
     const { data, isError, isLoading, isSuccess } = usePerformFetch(fetchProps);
 
     if (isLoading) {

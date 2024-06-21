@@ -1,7 +1,6 @@
 import { StyleSheet, useColorScheme } from "react-native";
-import { ThemedView } from "../theme";
-import { ThemedText } from "../theme";
-import { Task } from "@/models/models";
+import { ThemedView, ThemedText } from "../theme";
+import { Task } from "@/models";
 import { Colors } from "@/constants/Colors";
 
 //TODO: Retrieve count from backend

@@ -1,4 +1,4 @@
-import { Role, User } from "@/models/models";
+import { Role } from "@/models";
 
 export interface UserDTO {
   _id: string;

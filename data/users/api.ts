@@ -1,4 +1,4 @@
-import { User } from "@/models/models";
+import { User } from "@/models";
 import { sendGetRequest } from "../config";
 import { adaptUserData } from "./adapters";
 

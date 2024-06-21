@@ -1,6 +1,6 @@
-import { getTaskById } from "@/mocks/apiMocks";
-import { Task } from "@/models/models";
 import { useEffect, useState } from "react";
+import { getTaskById } from "@/mocks/apiMocks";
+import { Task } from "@/models";
 
 const useFetchTaskById = (id: string) => {
   const [isLoading, setIsLoading] = useState(false);

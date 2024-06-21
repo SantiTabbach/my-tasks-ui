@@ -1,15 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
-import React from "react";
-import { Task } from "@/models/models";
+import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import { router } from "expo-router";
+import { Task } from "@/models";
 import { Colors } from "@/constants/Colors";
 import { ThemedText } from "../theme";
-import { ExternalLink } from "../ExternalLink";
 
 const TaskItem = (task: Task) => {
   const { title, description, dateToComplete, completed } = task;

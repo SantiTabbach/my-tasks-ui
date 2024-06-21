@@ -1,7 +1,7 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemedText, ThemedContainer, ThemedView } from "@/components/theme";
 import { getUserById } from "@/data/users/api";
-import { User } from "@/models/models";
+import { User } from "@/models";
 import withApiFeedback from "@/components/hoc/withApiFeedback";
 import { useSession } from "@/context/auth/ctx";
 

@@ -1,4 +1,4 @@
-import { User } from "@/models/models";
+import { User } from "@/models";
 import { sendPostRequest } from "../config";
 import { adaptUserData } from "../users/adapters";
 import { IAuthBody, IAuthResponseDTO, ICreateUserBody } from "./models";

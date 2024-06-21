@@ -5,7 +5,7 @@ import { Button, Form, H2, Spinner, YStack } from "tamagui";
 import { ThemedContainer } from "@/components/theme";
 import { FormInput } from "@/components/form";
 import { ICreateUserBody, signUp } from "@/data/auth";
-import { Role } from "@/models/models";
+import { Role } from "@/models";
 
 const initialFormValue = {
   username: "",

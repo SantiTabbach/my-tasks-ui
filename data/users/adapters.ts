@@ -1,4 +1,4 @@
-import { User } from "@/models/models";
+import { User } from "@/models";
 import { UserDTO } from "./models";
 
 export const adaptUserData = (user: UserDTO): User => {
