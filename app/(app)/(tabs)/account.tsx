@@ -3,22 +3,29 @@ import { ThemedText, ThemedContainer, ThemedView } from "@/components/theme";
 import { getUserById } from "@/data/users";
 import { User } from "@/models/models";
 import withApiFeedback from "@/components/hoc/withApiFeedback";
+import { useSession } from "@/context/auth/ctx";
 
 interface IUserInfo {
   userInfo: User;
 }
 
-const UserInfo = ({ userInfo }: IUserInfo) => (
-  <ThemedView style={styles.userInfoContainer}>
-    {userInfo?.avatar && <Image src={userInfo.avatar} style={styles.avatar} />}
-    <ThemedText type="title" style={{ textAlign: "center" }}>
-      {userInfo.username}
-    </ThemedText>
-    <TouchableOpacity style={styles.logoutBtn}>
-      <ThemedText type="subtitle">Logout</ThemedText>
-    </TouchableOpacity>
-  </ThemedView>
-);
+const UserInfo = ({ userInfo }: IUserInfo) => {
+  const { signOut } = useSession();
+
+  return (
+    <ThemedView style={styles.userInfoContainer}>
+      {userInfo?.avatar && (
+        <Image src={userInfo.avatar} style={styles.avatar} />
+      )}
+      <ThemedText type="title" style={{ textAlign: "center" }}>
+        {userInfo.username}
+      </ThemedText>
+      <TouchableOpacity style={styles.logoutBtn} onPress={() => signOut()}>
+        <ThemedText type="subtitle">Logout</ThemedText>
+      </TouchableOpacity>
+    </ThemedView>
+  );
+};
 
 const WrappedUserInfo = withApiFeedback<IUserInfo, User | undefined>(
   UserInfo,
