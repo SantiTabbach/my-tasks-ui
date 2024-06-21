@@ -1,6 +1,6 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemedText, ThemedContainer, ThemedView } from "@/components/theme";
-import { getUserById } from "@/data/users";
+import { getUserById } from "@/data/users/api";
 import { User } from "@/models/models";
 import withApiFeedback from "@/components/hoc/withApiFeedback";
 import { useSession } from "@/context/auth/ctx";
@@ -10,8 +10,6 @@ interface IUserInfo {
 }
 
 const UserInfo = ({ userInfo }: IUserInfo) => {
-  const { signOut } = useSession();
-
   return (
     <ThemedView style={styles.userInfoContainer}>
       {userInfo?.avatar && (
@@ -20,9 +18,6 @@ const UserInfo = ({ userInfo }: IUserInfo) => {
       <ThemedText type="title" style={{ textAlign: "center" }}>
         {userInfo.username}
       </ThemedText>
-      <TouchableOpacity style={styles.logoutBtn} onPress={() => signOut()}>
-        <ThemedText type="subtitle">Logout</ThemedText>
-      </TouchableOpacity>
     </ThemedView>
   );
 };
@@ -37,9 +32,14 @@ const WrappedUserInfo = withApiFeedback<IUserInfo, User | undefined>(
 );
 
 const AccountScreen = () => {
+  const { signOut } = useSession();
+
   return (
     <ThemedContainer style={styles.container}>
       <WrappedUserInfo />
+      <TouchableOpacity style={styles.logoutBtn} onPress={() => signOut()}>
+        <ThemedText type="subtitle">Logout</ThemedText>
+      </TouchableOpacity>
     </ThemedContainer>
   );
 };

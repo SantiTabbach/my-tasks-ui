@@ -17,10 +17,10 @@ import {
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import "react-native-reanimated";
-import { useColorScheme } from "@/hooks";
-import { SessionProvider } from "@/context/auth/ctx";
 import { TamaguiProvider, createTamagui } from "@tamagui/core";
 import { config } from "@tamagui/config/v3";
+import { useColorScheme } from "@/hooks";
+import { SessionProvider } from "@/context/auth/ctx";
 
 SplashScreen.preventAutoHideAsync();
 

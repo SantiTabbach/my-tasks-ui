@@ -8,7 +8,3 @@ export interface UserDTO {
   active: boolean;
   __v: number;
 }
-
-export interface ICreateUserBody extends Omit<User, "id" | "active"> {
-  password: string;
-}

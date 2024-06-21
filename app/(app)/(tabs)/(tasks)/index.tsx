@@ -3,7 +3,7 @@ import { HelloWave } from "@/components/HelloWave";
 import { ThemedText, ThemedContainer, ThemedView } from "@/components/theme";
 import TasksList from "@/components/tasks/TasksList";
 import usePerformFetch from "@/hooks/usePerformFetch";
-import { getUserById } from "@/data/users";
+import { getUserById } from "@/data/users/api";
 
 export default function HomeScreen() {
   const {
